@@ -8,10 +8,17 @@ class Player : public Actor {
 		void create();
 		void update();
 		void dispose();
-		static Player* getInstance();
+		~Player(){}
+		
+		static Player& getInstance()
+		{
+			static Player _instance;
+			return _instance;
+		}
 	
 	private:
-		Player(){}
-		static Player* _instance;
+		Player() {}
+		Player(const Player&);
+		Player& operator=(const Player&);
 
 };

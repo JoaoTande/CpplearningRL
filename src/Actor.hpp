@@ -4,14 +4,14 @@
 
 class Actor : public GameObject{
 	public:
+		~Actor(){};
 		Actor(){}
-		~Actor(){}
-		virtual void create();
+		virtual void create()=0;
 		void render(){
-			TCODConsole::root->putChar(x,y,glyph);
+			TCODConsole::root->putChar(x,y,glyph,fore,back);
 		}
-		virtual void update();
-		virtual void dispose();
+		virtual void update()=0;
+		virtual void dispose()=0;
 		inline float getX(){
 			return x;
 		}
@@ -24,16 +24,16 @@ class Actor : public GameObject{
 		inline void setY(float y_val){
 			y = y_val;
 		}
-		inline char getGlyph(){
+		inline int getGlyph(){
 			return glyph;
 		}
-		inline void setGlyph(char glyph_val){
+		inline void setGlyph(int glyph_val){
 			glyph = glyph_val;
 		}
 
 	protected:
 		float x,y;
-		char glyph;
+		int glyph;
 		TCODColor fore;
 		TCODColor back;
 

@@ -11,5 +11,5 @@ public:
 	void update();
 	void dispose();
 private:
-	Player * player = Player::getInstance();
+	Player & player = Player::getInstance();
 };

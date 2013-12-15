@@ -13,3 +13,6 @@ src/%.o : src/%.cpp
 	g++ $< -c -o $@ -Iinclude -Wall -g
 clean :
 	rm -f $(OBJS)
+debug: rl
+	gdb rl
+	#http://www.yolinux.com/TUTORIALS/GDB-Commands.html

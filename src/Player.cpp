@@ -1,4 +1,3 @@
-#pragma once
 #include "libtcod.hpp"
 #include "Player.hpp"
 #include "Engine.hpp"
@@ -16,7 +15,7 @@ bool Player::getKey(TCOD_key_t key){
 void Player::create(){
 	x = Engine::WIDTH/2;
 	y = Engine::HEIGHT/2;
-	glyph= '@';
+	glyph= 64;
 	fore = TCODColor::white;
 	back = TCODColor::black;
 }
@@ -25,13 +24,4 @@ void Player::update(){
 }
 void Player::dispose(){
 
-}
-
-Player* Player::_instance = 0;
-
-Player* Player::getInstance(){
-	if(_instance == 0){
-		_instance = new Player;
-	}
-	return _instance;
 }
