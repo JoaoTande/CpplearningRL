@@ -15,4 +15,4 @@ clean :
 	rm -f $(OBJS)
 debug: rl
 	gdb rl
-	#http://www.yolinux.com/TUTORIALS/GDB-Commands.html
+#http://www.yolinux.com/TUTORIALS/GDB-Commands.html
