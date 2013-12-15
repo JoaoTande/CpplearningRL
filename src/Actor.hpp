@@ -8,20 +8,20 @@ class Actor : public GameObject{
 		Actor(){}
 		virtual void create()=0;
 		void render(){
-			TCODConsole::root->putChar(x,y,glyph,fore,back);
+			TCODConsole::root->putCharEx(x,y,glyph,fore,back);
 		}
 		virtual void update()=0;
 		virtual void dispose()=0;
-		inline float getX(){
+		inline int getX(){
 			return x;
 		}
-		inline float getY(){
+		inline int getY(){
 			return y;
 		}
-		inline void setX(float x_val){
+		inline void setX(int  x_val){
 			x = x_val;
 		}
-		inline void setY(float y_val){
+		inline void setY(int  y_val){
 			y = y_val;
 		}
 		inline int getGlyph(){
@@ -32,7 +32,7 @@ class Actor : public GameObject{
 		}
 
 	protected:
-		float x,y;
+		int x,y;
 		int glyph;
 		TCODColor fore;
 		TCODColor back;

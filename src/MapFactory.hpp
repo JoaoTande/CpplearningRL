@@ -1,11 +1,15 @@
 #pragma once
+#include "libtcod.hpp"
 #include "GameObject.hpp"
 #include "Actor.hpp"
 #include "Engine.hpp"
+
+class Map;
+
 class MapFactory{
 	public:
 
-		Map* getMap(char type);
+		Map *getMap(char type);
 
 		static MapFactory& getInstance()
 		{
@@ -19,32 +23,52 @@ class MapFactory{
 
 	
 };
-class CaveMap : public GameObject{
-	public:
-		CaveMap(){create()}
-		~CaveMap(){delete [] board}
-		void create();
-		void render();
-		void dispose();
-		void update();
-		void setTile(int x, int y,Tile t){
-			board[x + y*Engine::WIDTH] = t;
-		}
-		Tile getTile(int x, int y){
-			return tile[x+y*Engine::WIDTH];
-		}
-	private: 
-		void randomFill();
-		Tile board;
 
-};
 class Tile : public Actor{
 	public:
 		bool canWalk;
 		void create();
 		void dispose();
 		void update();
-		Tile(x,y,glyph,fore,back) : x(x),y(y),glyph(glyph),fore(fore),back(back){create()}
-		Tile(x,y,glyph,canWalk) : x(x),y(y),glyph(glyph),canWalk(canWalk){create()}
-		Tile(x,y,glyph) :x(x),y(y),glyph(glyph),canWalk(true){create()}
+		Tile(int X,int Y,char GLYPH,TCODColor FORE,TCODColor BACK, bool CANWALK)
+		{
+			x = X;
+			y = Y;
+			glyph = GLYPH;
+			fore = FORE;
+			back = BACK;
+			canWalk = CANWALK;
+		}
+		Tile(int X,int Y,char GLYPH, bool CANWALK)
+		{
+			x = X;
+			y = Y;
+			glyph = GLYPH;
+			fore = TCODColor::white;
+			back = TCODColor::black;
+			canWalk = CANWALK;
+		}
+		Tile(int X,int Y,char GLYPH)
+		{
+			x = X;
+			y = Y;
+			glyph = GLYPH;
+			canWalk = true; 
+			fore = TCODColor::white;
+			back=TCODColor::black;
+		}
+};
+
+class Map : public GameObject{
+	public:
+		virtual void create();
+		void render();
+		void dispose(delete [] board);
+		virtual void update();
+		inline void setTile(int x, int y,Tile t);
+		inline Tile getTile(int x, int y);
+		inline Tile getTile(int i);
+	private: 
+		Tile board[Engine::WIDTH * Engine::HEIGHT];
+
 };

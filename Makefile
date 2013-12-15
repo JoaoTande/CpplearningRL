@@ -7,8 +7,12 @@ ifeq ($(shell sh -c 'uname -s'),Linux)
 else
 	LIBFLAGS=-Llib -ltcod-mingw-debug -static-libgcc -static-libstdc++ -mwindows
 endif
+
+
 rl : $(OBJS)
 	g++ $(OBJS) -o rl -Wall $(LIBFLAGS) -g
+release : $(OBJS)
+	g++ $(OBJS) -o rlRELEASE -Wall $(LIBFLAGS) -g -O3
 src/%.o : src/%.cpp
 	g++ $< -c -o $@ -Iinclude -Wall -g
 clean :
