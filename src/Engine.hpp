@@ -1,6 +1,10 @@
 #pragma once
 #include "GameObject.hpp"
+#include "MapFactory.hpp"
 #include "Player.hpp"
+#include "Map.hpp"
+
+class Map;
 
 class Engine : public GameObject{
 public:
@@ -12,4 +16,5 @@ public:
 	void dispose();
 private:
 	Player & player = Player::getInstance();
+	Map * map = 0;
 };

@@ -1,11 +1,11 @@
+#pragma once
 #include "libtcod.hpp"
 #include "MapFactory.hpp"
+#include "Maps.hpp"
+#include "Engine.hpp"
 
-Map* MapFactory::getMap(char type){
-	switch(type){
-		case 'c': return 0;
-	}return 0;
-}
+
+
 
 void Tile::create(){
 
@@ -23,6 +23,9 @@ void Map::setTile(int x, int y, Tile t){
 }
 Tile Map::getTile(int x, int y){
 	return board[x*Engine::WIDTH + y];
+}
+void Map::setTile(int i, Tile t){
+	board[i] = t;
 }
 Tile Map::getTile(int i){
 	return board[i];
